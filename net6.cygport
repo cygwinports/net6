@@ -1,13 +1,16 @@
 NAME="net6"
 VERSION=1.3.14
-RELEASE=1
+RELEASE=2
 CATEGORY="Libs"
 SUMMARY="C++ TCP protocol abstraction library"
 DESCRIPTION="net6 is a library which eases the development of network-based
 applications as it provides a TCP protocol abstraction for C++."
 HOMEPAGE="https://github.com/gobby/net6"
 SRC_URI="http://releases.0x539.de/net6/net6-${VERSION}.tar.gz"
-PATCH_URI="1.3.14-no-undefined.patch"
+PATCH_URI="
+	http://pkgs.fedoraproject.org/cgit/rpms/net6.git/plain/net6-1.3.14-drop-deprecated-gnutls-call.patch
+	1.3.14-no-undefined.patch
+"
 
 PKG_NAMES="libnet6_1.3_0 libnet6-common libnet6-devel"
 libnet6_1_3_0_REQUIRES="libnet6-common"
@@ -16,3 +19,5 @@ libnet6_common_CONTENTS="usr/share/doc/ usr/share/locale/"
 libnet6_devel_CONTENTS="usr/include/ usr/lib/libnet6.dll.a usr/lib/pkgconfig/net6-1.3.pc"
 
 DIFF_EXCLUDES="config.hpp.in"
+
+CXXFLAGS+=" -std=gnu++11"

@@ -6,11 +6,13 @@
  libnet6_la_LDFLAGS = -version-info 0:0:0 -release 1.3
 +libnet6_la_LDFLAGS += -no-undefined
  
- libnet6_la_LIBADD = $(libnet6_LIBS)
+-libnet6_la_LIBADD = $(libnet6_LIBS)
++libnet6_la_LIBADD = $(libnet6_LIBS) $(LIBINTL)
  
  if WIN32
- libnet6_la_LIBADD += -lws2_32 -lintl
+-libnet6_la_LIBADD += -lws2_32 -lintl
 -libnet6_la_LDFLAGS += -no-undefined
++libnet6_la_LIBADD += -lws2_32
  endif
  
  INCLUDES = $(libnet6_CFLAGS) -I$(srcdir)/inc
